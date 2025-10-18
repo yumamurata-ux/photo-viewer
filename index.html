@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Hiragino Sans'; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'Lucida Grande'; font-kerning: none}
+    span.s3 {font: 12.0px 'Hiragino Sans'; font-kerning: none}
+    span.s4 {font: 12.0px Helvetica; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Photo Viewer&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body { margin:0; background:#111; color:#eee; font-family:sans-serif; text-align:center; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#viewer { width:100vw; height:90vh; background-color:black; display:none; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#menu { padding:10px; display:none; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>select {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size:1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding:4px 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:#222; color:#fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border:1px solid #444; border-radius:6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="passwordPrompt"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Password required to view&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input type="password" id="passwordInput" placeholder="Enter password"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button id="passwordButton"&gt;Submit&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p id="error" style="color:red;"&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="menu"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label for="imageSelect"&gt;Select a photo:&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;select id="imageSelect"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;option value="Giuseppe-Guadagnini-1785-Vn-01_tiles.dzi"&gt;Giuseppe Guadagnini 1785&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;option value="Antonio-Stradivari-1709-Vn-01_tiles.dzi"&gt;Antonio Stradivari 1709&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;option value="Guarneri-del-Gesu-1742-Vn-01_tiles.dzi"&gt;Guarneri del Gesù 1742&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="viewer"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const correctPassword = “yumamurata”; // </span><span class="s2">←</span><span class="s3">ここに好きなパスワードを設定</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const passwordButton = document.getElementById("passwordButton");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>passwordButton.addEventListener("click", function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const input = document.getElementById("passwordInput").value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(input === correctPassword) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// </span><span class="s3">パスワード正解</span><span class="s1"> </span><span class="s2">→</span><span class="s1"> </span><span class="s3">ビューア表示</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("passwordPrompt").style.display = "none";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("menu").style.display = "block";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("viewer").style.display = "block";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// OpenSeadragon</span><span class="s3">初期化</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const viewer = OpenSeadragon({</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>id: "viewer",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>prefixUrl: "https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>showNavigator: true,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>navigatorPosition: "BOTTOM_RIGHT",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>defaultZoomLevel: 1,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>minZoomLevel: 0.5,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>maxZoomLevel: 20,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>tileSources: document.getElementById("imageSelect").value</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span>// </span><span class="s1">プルダウンで画像を切り替える</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("imageSelect").addEventListener("change", function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>viewer.open(this.value);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("error").innerText = "Incorrect password";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
