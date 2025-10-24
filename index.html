@@ -2,53 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Photo Viewer</title>
+  <title>Instrument Viewer</title>
   <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body { margin:0; background:#111; color:#eee; font-family:sans-serif; text-align:center; }
-    #viewer { width:100vw; height:90vh; background-color:black; display:none; }
-    #menu { padding:10px; display:none; }
-    select {
-      font-size:1rem;
-      padding:4px 8px;
-      background:#222; color:#fff;
-      border:1px solid #444; border-radius:6px;
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    h1 {
+      font-weight: 400;
+      margin: 30px 0 10px;
+      letter-spacing: 0.5px;
+    }
+    #viewer {
+      width: 90vw;
+      height: 80vh;
+      background-color: #e5e5e5;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      display: none;
+      overflow: hidden;
+    }
+    #passwordPrompt, #menu {
+      background: white;
+      padding: 24px 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin-top: 120px;
+      text-align: center;
+    }
+    input[type="password"], select {
+      padding: 10px 16px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      margin: 10px 0;
+      transition: border-color 0.2s;
+    }
+    input[type="password"]:focus, select:focus {
+      border-color: #888;
+    }
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    #error {
+      color: #d33;
+      margin-top: 10px;
+    }
+    #menu {
+      display: none;
+      margin-bottom: 16px;
     }
   </style>
 </head>
 <body>
 
+  <h1>Instrument Viewer</h1>
+
   <div id="passwordPrompt">
-    <h2>Password required to view</h2>
+    <h2>Password required</h2>
     <input type="password" id="passwordInput" placeholder="Enter password">
+    <br>
     <button id="passwordButton">Submit</button>
-    <p id="error" style="color:red;"></p>
+    <p id="error"></p>
   </div>
 
   <div id="menu">
     <label for="imageSelect">Select a photo:</label>
     <select id="imageSelect">
-      <option value="Giuseppe-Guadagnini-1785-Vn-01_tiles.dzi">Giuseppe Guadagnini 1785</option>
-      <option value="Antonio-Stradivari-1709-Vn-01_tiles.dzi">Antonio Stradivari 1709</option>
-      <option value="Guarneri-del-Gesu-1742-Vn-01_tiles.dzi">Guarneri del Gesù 1742</option>
+      <option value="Giuseppe-Guadagnini-1785-Vn-01_tiles.dzi">
+        Giuseppe Guadagnini 1785
+      </option>
     </select>
   </div>
 
   <div id="viewer"></div>
 
   <script>
-    const correctPassword = "yumamurata"; // ←ここに好きなパスワードを設定
+    const correctPassword = "yumamurata"; // ← change if needed
 
     const passwordButton = document.getElementById("passwordButton");
     passwordButton.addEventListener("click", function() {
       const input = document.getElementById("passwordInput").value;
       if(input === correctPassword) {
-        // パスワード正解 → ビューア表示
-      document.getElementById("passwordPrompt").style.display = "none";
-      document.getElementById("menu").style.display = "block";
-      document.getElementById("viewer").style.display = "block";
+        document.getElementById("passwordPrompt").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+        document.getElementById("viewer").style.display = "block";
 
-        // OpenSeadragon初期化
         const viewer = OpenSeadragon({
           id: "viewer",
           prefixUrl: "https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/",
@@ -60,16 +118,13 @@
           tileSources: document.getElementById("imageSelect").value
         });
 
-        // プルダウンで画像を切り替える
         document.getElementById("imageSelect").addEventListener("change", function() {
           viewer.open(this.value);
         });
-
       } else {
         document.getElementById("error").innerText = "Incorrect password";
       }
     });
   </script>
-
 </body>
 </html>
