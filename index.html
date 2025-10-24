@@ -37,16 +37,16 @@
   <div id="viewer"></div>
 
   <script>
-    const correctPassword = “yumamurata”; // ←ここに好きなパスワードを設定
+    const correctPassword = "yumamurata"; // ←ここに好きなパスワードを設定
 
     const passwordButton = document.getElementById("passwordButton");
     passwordButton.addEventListener("click", function() {
       const input = document.getElementById("passwordInput").value;
       if(input === correctPassword) {
         // パスワード正解 → ビューア表示
-        document.getElementById("passwordPrompt").style.display = "none";
-        document.getElementById("menu").style.display = "block";
-        document.getElementById("viewer").style.display = "block";
+      document.getElementById("passwordPrompt").style.display = "none";
+      document.getElementById("menu").style.display = "block";
+      document.getElementById("viewer").style.display = "block";
 
         // OpenSeadragon初期化
         const viewer = OpenSeadragon({
