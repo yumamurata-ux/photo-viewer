@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Instrument Viewer</title>
+  <meta charset="UTF-8">
+  <title>Giuseppe Guadagnini 1785</title>
   <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
@@ -23,14 +23,14 @@
     }
     #viewer {
       width: 90vw;
-      height: 80vh;
+      height: 75vh;
       background-color: #e5e5e5;
       border-radius: 16px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
       display: none;
       overflow: hidden;
     }
-    #passwordPrompt, #menu {
+    #passwordPrompt {
       background: white;
       padding: 24px 32px;
       border-radius: 12px;
@@ -38,7 +38,7 @@
       margin-top: 120px;
       text-align: center;
     }
-    input[type="password"], select {
+    input[type="password"] {
       padding: 10px 16px;
       font-size: 1rem;
       border: 1px solid #ccc;
@@ -47,7 +47,7 @@
       margin: 10px 0;
       transition: border-color 0.2s;
     }
-    input[type="password"]:focus, select:focus {
+    input[type="password"]:focus {
       border-color: #888;
     }
     button {
@@ -67,15 +67,42 @@
       color: #d33;
       margin-top: 10px;
     }
-    #menu {
+    #thumbnailBar {
       display: none;
-      margin-bottom: 16px;
+      width: 90vw;
+      margin: 16px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .thumb {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .thumb:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    .thumb.active {
+      outline: 3px solid #333;
+      opacity: 1;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
 
-  <h1>Instrument Viewer</h1>
+  <h1>Giuseppe Guadagnini 1785</h1>
 
   <div id="passwordPrompt">
     <h2>Password required</h2>
@@ -85,27 +112,19 @@
     <p id="error"></p>
   </div>
 
-  <div id="menu">
-    <label for="imageSelect">Select a photo:</label>
-    <select id="imageSelect">
-      <option value="Giuseppe-Guadagnini-1785-Vn-01_tiles.dzi">
-        Giuseppe Guadagnini 1785
-      </option>
-    </select>
-  </div>
-
   <div id="viewer"></div>
+  <div id="thumbnailBar"></div>
 
   <script>
-    const correctPassword = "yumamurata"; // ← change if needed
+    const correctPassword = "yumamurata";
 
     const passwordButton = document.getElementById("passwordButton");
     passwordButton.addEventListener("click", function() {
       const input = document.getElementById("passwordInput").value;
       if(input === correctPassword) {
         document.getElementById("passwordPrompt").style.display = "none";
-        document.getElementById("menu").style.display = "block";
         document.getElementById("viewer").style.display = "block";
+        document.getElementById("thumbnailBar").style.display = "flex";
 
         const viewer = OpenSeadragon({
           id: "viewer",
@@ -115,12 +134,24 @@
           defaultZoomLevel: 1,
           minZoomLevel: 0.5,
           maxZoomLevel: 20,
-          tileSources: document.getElementById("imageSelect").value
+          tileSources: "Giuseppe-Guadagnini-1785-Vn-01_tiles.dzi"
         });
 
-        document.getElementById("imageSelect").addEventListener("change", function() {
-          viewer.open(this.value);
-        });
+        const thumbnailBar = document.getElementById("thumbnailBar");
+        for (let i = 1; i <= 8; i++) {
+          const thumb = document.createElement("div");
+          thumb.className = "thumb";
+          const img = document.createElement("img");
+          img.src = `Giuseppe-Guadagnini-1785-Vn-0${i}_files/0/0_0.jpeg`; // サムネイル用
+          thumb.appendChild(img);
+          thumb.addEventListener("click", function() {
+            viewer.open(`Giuseppe-Guadagnini-1785-Vn-0${i}_tiles.dzi`);
+            document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+            thumb.classList.add("active");
+          });
+          if (i === 1) thumb.classList.add("active");
+          thumbnailBar.appendChild(thumb);
+        }
       } else {
         document.getElementById("error").innerText = "Incorrect password";
       }
