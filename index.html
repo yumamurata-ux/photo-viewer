@@ -137,21 +137,25 @@
           tileSources: "Giuseppe-Guadagnini-1785-Vn-01_tiles.dzi"
         });
 
-        const thumbnailBar = document.getElementById("thumbnailBar");
-        for (let i = 1; i <= 8; i++) {
-          const thumb = document.createElement("div");
-          thumb.className = "thumb";
-          const img = document.createElement("img");
-          img.src = `Giuseppe-Guadagnini-1785-Vn-0${i}_files/0_0.jpeg`; // サムネイル用
-          thumb.appendChild(img);
-          thumb.addEventListener("click", function() {
-            viewer.open(`Giuseppe-Guadagnini-1785-Vn-0${i}_tiles.dzi`);
-            document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
-            thumb.classList.add("active");
-          });
-          if (i === 1) thumb.classList.add("active");
-          thumbnailBar.appendChild(thumb);
-        }
+const thumbnailBar = document.getElementById("thumbnailBar");
+for (let i = 1; i <= 8; i++) {
+  const thumb = document.createElement("div");
+  thumb.className = "thumb";
+  const img = document.createElement("img");
+  
+  // 修正：0_0.jpeg が直接 _tiles_files にある場合
+  img.src = `Giuseppe-Guadagnini-1785-Vn-0${i}_tiles_files/0_0.jpeg`; 
+  
+  thumb.appendChild(img);
+  thumb.addEventListener("click", function() {
+    viewer.open(`Giuseppe-Guadagnini-1785-Vn-0${i}_tiles.dzi`);
+    document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+    thumb.classList.add("active");
+  });
+  if (i === 1) thumb.classList.add("active");
+  thumbnailBar.appendChild(thumb);
+}
+
       } else {
         document.getElementById("error").innerText = "Incorrect password";
       }
