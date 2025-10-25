@@ -4,59 +4,19 @@
   <meta charset="UTF-8">
   <title>Giuseppe Guadagnini 1785</title>
   <style>
-    @font-face {
-      font-family: "Academy Engraved LET";
-      src: local("Academy Engraved LET"), local("AcademyEngravedLetPlain");
-    }
-
-    :root {
-      --bg: #ffffff;        
-      --text: #3a2c23;     
-      --accent: #d7b877;
-      --card-bg: #f5f5f5;
-    }
-
+    @font-face { font-family: "Academy Engraved LET"; src: local("Academy Engraved LET"), local("AcademyEngravedLetPlain"); }
+    :root { --bg: #ffffff; --text: #3a2c23; --accent: #d7b877; --card-bg: #f5f5f5; }
     * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: "Academy Engraved LET", serif;
-      background-color: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    header {
-      width: 100%;
-      text-align: center;
-      padding: 40px 20px 20px;
-    }
-
-    header h1 { font-weight: normal; font-size: 2rem; color: var(--accent); margin-bottom: 4px; }
-    header p { margin: 0; font-size: 1rem; }
-
-    #openseadragon { width: 90%; max-width: 900px; height: 70vh; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 12px; }
-
-    .thumbnails {
-      display: flex; justify-content: center; flex-wrap: wrap; margin: 20px auto 40px; gap: 12px;
-    }
-
-    .thumbnails img {
-      width: 80px; height: 100px; object-fit: contain; cursor: pointer; border: 2px solid transparent;
-      border-radius: 6px; transition: all 0.3s ease;
-    }
-    .thumbnails img.active,
-    .thumbnails img:hover { border-color: var(--accent); transform: scale(1.05); }
-
-    footer { margin: 40px 0; color: #666; font-size: 0.9rem; }
-
-    @media (max-width: 600px) {
-      #openseadragon { width: 95%; height: 60vh; }
-      .thumbnails img { width: 60px; height: 80px; }
-    }
+    body { margin:0; font-family: "Academy Engraved LET", serif; background-color: var(--bg); color: var(--text); display:flex; flex-direction:column; align-items:center; min-height:100vh; }
+    header { width:100%; text-align:center; padding:40px 20px 20px; }
+    header h1 { font-weight:normal; font-size:2rem; color:var(--accent); margin-bottom:4px; }
+    header p { margin:0; font-size:1rem; }
+    #openseadragon { width:90%; max-width:900px; height:70vh; background-color:#f5f5f5; border:1px solid #ccc; border-radius:12px; }
+    .thumbnails { display:flex; justify-content:center; flex-wrap:wrap; margin:20px auto 40px; gap:12px; }
+    .thumbnails img { width:80px; height:100px; object-fit:contain; cursor:pointer; border:2px solid transparent; border-radius:6px; transition:all 0.3s ease; }
+    .thumbnails img.active, .thumbnails img:hover { border-color:var(--accent); transform:scale(1.05); }
+    footer { margin:40px 0; color:#666; font-size:0.9rem; }
+    @media(max-width:600px){ #openseadragon{width:95%; height:60vh;} .thumbnails img{width:60px; height:80px;} }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"></script>
 </head>
@@ -70,14 +30,14 @@
   <div id="openseadragon"></div>
 
   <div class="thumbnails">
-    <img src="giuseppe-guadagnini-1785-01-thumb1.jpg" data-dzi="guadagnini-giuseppe-1785-vn-01_tiles.dzi" class="active" alt="Front">
-    <img src="giuseppe-guadagnini-1785-01-thumb2.jpg" data-dzi="guadagnini-giuseppe-1785-vn-02_tiles.dzi" alt="Back">
-    <img src="giuseppe-guadagnini-1785-01-thumb3.jpg" data-dzi="guadagnini-giuseppe-1785-vn-03_tiles.dzi" alt="Side 1">
-    <img src="giuseppe-guadagnini-1785-01-thumb4.jpg" data-dzi="guadagnini-giuseppe-1785-vn-04_tiles.dzi" alt="Side 2">
-    <img src="giuseppe-guadagnini-1785-01-thumb5.jpg" data-dzi="guadagnini-giuseppe-1785-vn-05_tiles.dzi" alt="Scroll 1">
-    <img src="giuseppe-guadagnini-1785-01-thumb6.jpg" data-dzi="guadagnini-giuseppe-1785-vn-06_tiles.dzi" alt="Scroll 2">
-    <img src="giuseppe-guadagnini-1785-01-thumb7.jpg" data-dzi="guadagnini-giuseppe-1785-vn-07_tiles.dzi" alt="Detail 1">
-    <img src="giuseppe-guadagnini-1785-01-thumb8.jpg" data-dzi="guadagnini-giuseppe-1785-vn-08_tiles.dzi" alt="Detail 2">
+    <img src="giuseppe-guadagnini-1785-01-thumb1.jpg" data-dzi="giuseppe-guadagnini-1785-vn-01_tiles.dzi" class="active" alt="Front">
+    <img src="giuseppe-guadagnini-1785-01-thumb2.jpg" data-dzi="giuseppe-guadagnini-1785-vn-02_tiles.dzi" alt="Back">
+    <img src="giuseppe-guadagnini-1785-01-thumb3.jpg" data-dzi="giuseppe-guadagnini-1785-vn-03_tiles.dzi" alt="Side 1">
+    <img src="giuseppe-guadagnini-1785-01-thumb4.jpg" data-dzi="giuseppe-guadagnini-1785-vn-04_tiles.dzi" alt="Side 2">
+    <img src="giuseppe-guadagnini-1785-01-thumb5.jpg" data-dzi="giuseppe-guadagnini-1785-vn-05_tiles.dzi" alt="Scroll 1">
+    <img src="giuseppe-guadagnini-1785-01-thumb6.jpg" data-dzi="giuseppe-guadagnini-1785-vn-06_tiles.dzi" alt="Scroll 2">
+    <img src="giuseppe-guadagnini-1785-01-thumb7.jpg" data-dzi="giuseppe-guadagnini-1785-vn-07_tiles.dzi" alt="Detail 1">
+    <img src="giuseppe-guadagnini-1785-01-thumb8.jpg" data-dzi="giuseppe-guadagnini-1785-vn-08_tiles.dzi" alt="Detail 2">
   </div>
 
   <footer>
@@ -86,15 +46,15 @@
 
   <script>
     let viewer = OpenSeadragon({
-      id: "openseadragon",
-      prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
-      tileSources: "guadagnini-giuseppe-1785-vn-01_tiles.dzi"
+      id:"openseadragon",
+      prefixUrl:"https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
+      tileSources:"giuseppe-guadagnini-1785-vn-01_tiles.dzi"
     });
 
     const thumbs = document.querySelectorAll(".thumbnails img");
-    thumbs.forEach(t => {
-      t.addEventListener("click", () => {
-        thumbs.forEach(i => i.classList.remove("active"));
+    thumbs.forEach(t=>{
+      t.addEventListener("click", ()=>{
+        thumbs.forEach(i=>i.classList.remove("active"));
         t.classList.add("active");
         viewer.open(t.dataset.dzi);
       });
