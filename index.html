@@ -9,14 +9,13 @@
     *{box-sizing:border-box;}
     body{margin:0;font-family:"Academy Engraved LET",serif;background-color:var(--bg);color:var(--text);display:flex;flex-direction:column;align-items:center;min-height:100vh;}
     h1{margin:30px 0 10px;font-weight:400;}
-    #viewer{width:90vw;height:75vh;background-color:#f5f5f5;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.1);display:none;overflow:hidden;}
-    #thumbnailBar{width:90vw;margin:16px 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;display:none;}
     #passwordPrompt{background:white;padding:24px 32px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-top:120px;text-align:center;}
     input[type="password"]{padding:10px 16px;font-size:1rem;border:1px solid #ccc;border-radius:8px;outline:none;margin:10px 0;transition:border-color 0.2s;}
     input[type="password"]:focus{border-color:#888;}
     button{background-color:#333;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:1rem;transition:background-color 0.2s;}
     button:hover{background-color:#555;}
     #error{color:#d33;margin-top:10px;}
+    #thumbnailBar{display:none;width:90vw;margin:16px 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;}
     .thumb{width:100px;height:100px;border-radius:8px;overflow:hidden;cursor:pointer;opacity:0.8;transition:transform 0.2s, opacity 0.2s;}
     .thumb:hover{transform:scale(1.05);opacity:1;}
     .thumb.active{outline:3px solid #333;opacity:1;}
@@ -50,53 +49,28 @@
       document.getElementById("viewer").style.display = "block";
       document.getElementById("thumbnailBar").style.display = "flex";
 
-      const viewer = OpenSeadragon({
-        id:"viewer",
-        prefixUrl:"https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/",
-        showNavigator:true,
-        navigatorPosition:"BOTTOM_RIGHT",
-        defaultZoomLevel:1,
-        minZoomLevel:0.5,
-        maxZoomLevel:20,
-        tileSources:"guadagnini-giuseppe-1785-vn-01-01_tiles.dzi"
-      });
-
+      // OpenSeadragon Viewer は個別ページで開くため、ここではトップページにサムネのみ表示
+      // 各サムネイルクリックで個別ページに飛ばす
       const thumbnailBar = document.getElementById("thumbnailBar");
-      // Guadagnini thumbnails
-      for (let i = 1; i <= 8; i++) {
-        const num = ("0"+i).slice(-2);
+
+      const instruments = [
+        {name:"Giuseppe Guadagnini 1785", html:"giuseppe-guadagnini-1785-01.html", thumb:"giuseppe-guadagnini-1785-01-thumb1.jpg"},
+        {name:"Nicolo Amati 1673", html:"nicolo-amati-1673-01.html", thumb:"nicolo-amati-1673-01-thumb1.jpg"}
+      ];
+
+      instruments.forEach(inst => {
         const thumb = document.createElement("div");
         thumb.className = "thumb";
         const img = document.createElement("img");
-        img.src = `giuseppe-guadagnini-1785-01-thumb${i}.jpg`;
+        img.src = inst.thumb;
         thumb.appendChild(img);
 
-        thumb.addEventListener("click", function() {
-          viewer.open(`guadagnini-giuseppe-1785-vn-01-${num}_tiles.dzi`);
-          document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
-          thumb.classList.add("active");
-        });
-
-        if(i===1) thumb.classList.add("active");
-        thumbnailBar.appendChild(thumb);
-      }
-      // Amati thumbnails
-      for (let i = 1; i <= 8; i++) {
-        const num = ("0"+i).slice(-2);
-        const thumb = document.createElement("div");
-        thumb.className = "thumb";
-        const img = document.createElement("img");
-        img.src = `nicolo-amati-1673-01-thumb${i}.jpg`;
-        thumb.appendChild(img);
-
-        thumb.addEventListener("click", function() {
-          viewer.open(`nicolo-amati-1673-01-${num}_tiles.dzi`);
-          document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
-          thumb.classList.add("active");
+        thumb.addEventListener("click", function(){
+          window.location.href = inst.html;
         });
 
         thumbnailBar.appendChild(thumb);
-      }
+      });
 
     } else {
       document.getElementById("error").innerText = "Incorrect password";
