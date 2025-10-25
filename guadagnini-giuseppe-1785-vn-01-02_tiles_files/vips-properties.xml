@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<image xmlns="http://www.vips.ecs.soton.ac.uk//dzsave" date="2025-10-25T16:10:59.158919+02" version="8.17.2">
+  <properties>
+    <property>
+      <name>width</name>
+      <value type="gint">5397</value>
+    </property>
+    <property>
+      <name>height</name>
+      <value type="gint">8095</value>
+    </property>
+    <property>
+      <name>bands</name>
+      <value type="gint">3</value>
+    </property>
+    <property>
+      <name>xoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>yoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>xres</name>
+      <value type="gdouble">2.8346456692913389</value>
+    </property>
+    <property>
+      <name>yres</name>
+      <value type="gdouble">2.8346456692913389</value>
+    </property>
+    <property>
+      <name>vips-loader</name>
+      <value type="VipsRefString">jpegload</value>
+    </property>
+    <property>
+      <name>jpeg-multiscan</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>jpeg-chroma-subsample</name>
+      <value type="VipsRefString">4:4:4</value>
+    </property>
+    <property>
+      <name>exif-ifd0-XResolution</name>
+      <value type="VipsRefString">72/1 (72, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-YResolution</name>
+      <value type="VipsRefString">72/1 (72, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-ResolutionUnit</name>
+      <value type="VipsRefString">2 (&#x23e3;&#x2382;&#x23a4;&#x23e3;&#x2383;&#x23b3;&#x23e3;&#x2383;&#x2381;, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ExifVersion</name>
+      <value type="VipsRefString">EXIF &#x23e3;&#x2383;&#x2390;&#x23e3;&#x2383;&#x23bc;&#x23e3;&#x2382;&#x23b8;&#x23e3;&#x2383;&#x23a7;&#x23e3;&#x2383;&#x23b3; 2.1 (EXIF &#x23e3;&#x2383;&#x2390;&#x23e3;&#x2383;&#x23bc;&#x23e3;&#x2382;&#x23b8;&#x23e3;&#x2383;&#x23a7;&#x23e3;&#x2383;&#x23b3; 2.1, Non definito, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-FlashpixVersion</name>
+      <value type="VipsRefString">FlashPix &#x23e3;&#x2383;&#x2390;&#x23e3;&#x2383;&#x23bc;&#x23e3;&#x2382;&#x23b8;&#x23e3;&#x2383;&#x23a7;&#x23e3;&#x2383;&#x23b3; 1.0 (FlashPix &#x23e3;&#x2383;&#x2390;&#x23e3;&#x2383;&#x23bc;&#x23e3;&#x2382;&#x23b8;&#x23e3;&#x2383;&#x23a7;&#x23e3;&#x2383;&#x23b3; 1.0, Non definito, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ColorSpace</name>
+      <value type="VipsRefString">65535 (Non calibrato, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>vips-sequential</name>
+      <value type="gint">1</value>
+    </property>
+  </properties>
+</image>
