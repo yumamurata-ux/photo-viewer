@@ -77,8 +77,9 @@
     .thumb {
       width: 100%;
       aspect-ratio: 3 / 4;
-      object-fit: cover;
-      filter: brightness(0.9) contrast(1.1);
+      object-fit: contain; /* ← cover → contain に変更 */
+      background-color: #2f241b; /* 背景を木目色に */
+      padding: 6px; /* 少し余白を追加してバランス良く */
       transition: filter 0.3s ease;
     }
 
