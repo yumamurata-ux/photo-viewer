@@ -14,30 +14,33 @@
     }
     h1 { text-align:center; margin-bottom: 30px; font-weight:400; }
     #gallery { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
-    .card { width: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.1); text-align:center; cursor:pointer; transition: transform 0.2s; }
+    .card { width: 200px; border-radius: 12px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.1); text-align:center; cursor:pointer; transition: transform 0.2s; }
     .card:hover { transform: scale(1.03); }
-    .card img { width: 100%; height: 150px; object-fit: cover; }
-    .card p { margin: 8px 0; font-weight: 500; }
+    .card img { width:100%; height:150px; object-fit:cover; }
+    .card p { margin:8px 0; font-weight:500; }
   </style>
 </head>
 <body>
 
-  <h1>Instrument Gallery</h1>
+<h1>Instrument Gallery</h1>
 
-  <div id="gallery">
-    <a href="guadagnini-1785.html">
-      <div class="card">
-        <img src="guadagnini-giuseppe-1785-vn-01-01_tiles_files/0/0_0.jpg">
-        <p>Giuseppe Guadagnini 1785</p>
-      </div>
-    </a>
-    <a href="amati-1673.html">
-      <div class="card">
-        <img src="amati-nicolo-1673-vn-01-01_tiles_files/0/0_0.jpg">
-        <p>Nicolo Amati 1673</p>
-      </div>
-    </a>
-  </div>
+<div id="gallery">
+  <!-- Guadagnini -->
+  <a href="giuseppe-guadagnini-1785-01.html">
+    <div class="card">
+      <img src="guadagnini-giuseppe-1785-vn-01-01_tiles_files/0/0_0.jpg" alt="Giuseppe Guadagnini 1785">
+      <p>Giuseppe Guadagnini 1785</p>
+    </div>
+  </a>
+
+  <!-- Nicolo Amati -->
+  <a href="nicolo-amati-1673-01.html">
+    <div class="card">
+      <img src="amati-nicolo-1673-vn-01-01_tiles_files/0/0_0.jpg" alt="Nicolo Amati 1673">
+      <p>Nicolo Amati 1673</p>
+    </div>
+  </a>
+</div>
 
 </body>
 </html>
