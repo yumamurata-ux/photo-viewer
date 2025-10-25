@@ -10,9 +10,9 @@
     }
 
     :root {
-      --bg: #ffffff;        /* 背景を白に変更 */
-      --card-bg: #f5f5f5;   /* カードも薄いグレーで柔らかく */
-      --text: #3a2c23;      /* 文字は茶色系 */
+      --bg: #ffffff;        
+      --card-bg: #f5f5f5;
+      --text: #3a2c23;
       --accent: #d7b877;
     }
 
@@ -39,8 +39,8 @@
       margin: 0;
       font-weight: normal;
       font-size: 2.2rem;
-      letter-spacing: 1px;
       color: var(--accent);
+      letter-spacing: 1px;
     }
 
     .gallery {
@@ -58,34 +58,35 @@
       overflow: hidden;
       text-decoration: none;
       color: var(--text);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
-    /* サムネイル縮小 */
     .thumb {
-      width: 20%;
-      aspect-ratio: 3 / 4;
-      object-fit: contain;
+      width: 100%;           /* 文字幅に合わせる */
+      aspect-ratio: 3 / 4;   /* 縦横比を維持 */
+      object-fit: contain;    /* 上下左右を切らずに収める */
       background-color: #ffffff;
       padding: 2px;
       transition: filter 0.3s ease;
     }
 
-    .card:hover .thumb {
+    .thumb:hover {
       filter: brightness(1.05) contrast(1.1);
     }
 
     .card-content {
       padding: 16px;
       text-align: center;
+      width: 100%;  /* サムネ横幅に合わせる */
     }
 
     .card h2 {
@@ -97,7 +98,7 @@
     .card p {
       margin: 0;
       font-size: 0.95rem;
-      color: #3a2c23;
+      color: var(--text);
       opacity: 0.85;
     }
 
@@ -112,7 +113,7 @@
         font-size: 1.6rem;
       }
       .thumb {
-        width: 35%;
+        aspect-ratio: 3 / 4;
       }
     }
   </style>
