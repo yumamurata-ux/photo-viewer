@@ -2,217 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Giuseppe Guadagnini 1785</title>
-  <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
+  <title>Instrument Gallery</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(160deg, #f8f8f8 0%, #e5e5e5 100%);
-      color: #222;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+      background-color: #fafafa;
+      color: #333;
+      margin: 0;
+      padding: 20px;
     }
-
-    h1 {
-      font-weight: 600;
-      margin: 40px 0 20px;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-      color: #111;
-    }
-
-    #viewer {
-      width: 90vw;
-      height: 60vh;
-      max-width: 1200px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      background-color: #fff;
-      display: none;
-    }
-
-    #passwordPrompt {
-      background: #fff;
-      padding: 36px 48px;
-      border-radius: 16px;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
-      margin-top: 120px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    #passwordPrompt:hover {
-      transform: translateY(-4px);
-    }
-
-    input[type="password"] {
-      padding: 12px 18px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      outline: none;
-      margin: 14px 0;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    input[type="password"]:focus {
-      border-color: #555;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    button {
-      background-color: #111;
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    button:hover {
-      background-color: #333;
-      transform: translateY(-2px);
-    }
-
-    #error {
-      color: #d33;
-      margin-top: 10px;
-    }
-
-    /* 横スクロールサムネイル */
-    #thumbnailBar {
-      width: 90vw;
-      margin: 16px 0;
-      display: flex;
-      overflow-x: auto;
-      gap: 12px;
-      padding-bottom: 8px;
-      display: none;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    #thumbnailBar::-webkit-scrollbar {
-      height: 6px;
-    }
-    #thumbnailBar::-webkit-scrollbar-thumb {
-      background: rgba(0,0,0,0.2);
-      border-radius: 3px;
-    }
-
-    .thumb {
-      flex: 0 0 auto; 
-      width: 110px;
-      height: 110px;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      opacity: 0.85;
-      transition: transform 0.3s, opacity 0.3s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .thumb:hover {
-      transform: scale(1.08);
-      opacity: 1;
-    }
-
-    .thumb.active {
-      outline: 3px solid #111;
-      opacity: 1;
-    }
-
-    .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @media (max-width: 600px) {
-      #viewer {
-        height: 50vh;
-      }
-      .thumb {
-        width: 80px;
-        height: 80px;
-      }
-    }
+    h1 { text-align:center; margin-bottom: 30px; font-weight:400; }
+    #gallery { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+    .card { width: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.1); text-align:center; cursor:pointer; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.03); }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card p { margin: 8px 0; font-weight: 500; }
   </style>
 </head>
 <body>
 
-  <h1>Giuseppe Guadagnini 1785</h1>
+  <h1>Instrument Gallery</h1>
 
-  <div id="passwordPrompt">
-    <h2>Password required</h2>
-    <input type="password" id="passwordInput" placeholder="Enter password">
-    <br>
-    <button id="passwordButton">Submit</button>
-    <p id="error"></p>
+  <div id="gallery">
+    <a href="guadagnini-1785.html">
+      <div class="card">
+        <img src="guadagnini-giuseppe-1785-vn-01-01_tiles_files/0/0_0.jpg">
+        <p>Giuseppe Guadagnini 1785</p>
+      </div>
+    </a>
+    <a href="amati-1673.html">
+      <div class="card">
+        <img src="amati-nicolo-1673-vn-01-01_tiles_files/0/0_0.jpg">
+        <p>Nicolo Amati 1673</p>
+      </div>
+    </a>
   </div>
 
-  <div id="viewer"></div>
-  <div id="thumbnailBar"></div>
-
-  <script>
-    const correctPassword = "yumamurata";
-
-    document.getElementById("passwordButton").addEventListener("click", function() {
-      const input = document.getElementById("passwordInput").value;
-      if (input === correctPassword) {
-        document.getElementById("passwordPrompt").style.display = "none";
-        document.getElementById("viewer").style.display = "block";
-        const thumbnailBar = document.getElementById("thumbnailBar");
-        thumbnailBar.style.display = "flex";
-
-        // タイル情報を配列で管理
-        const tileSources = [];
-        for (let i = 1; i <= 8; i++) {
-          tileSources.push(`Giuseppe-Guadagnini-1785-Vn-${i}_tiles.dzi`);
-        }
-
-        const viewer = OpenSeadragon({
-          id: "viewer",
-          prefixUrl: "https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/",
-          showNavigator: true,
-          navigatorPosition: "BOTTOM_RIGHT",
-          defaultZoomLevel: 1,
-          minZoomLevel: 0.5,
-          maxZoomLevel: 20,
-          tileSources: tileSources[0] // 最初は1枚目
-        });
-
-        // サムネイル作成
-        for (let i = 1; i <= 8; i++) {
-          const thumb = document.createElement("div");
-          thumb.className = "thumb";
-          const img = document.createElement("img");
-          img.src = `Giuseppe-Guadagnini-1785-Vn-${i}_tiles_files/0/0_0.jpg`;
-          thumb.appendChild(img);
-
-          const openTile = function() {
-            viewer.open(tileSources[i-1]);
-            document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
-            thumb.classList.add("active");
-          };
-
-          // デスクトップ・タッチ両方に対応
-          thumb.addEventListener("click", openTile);
-          thumb.addEventListener("touchstart", openTile);
-
-          if (i === 1) thumb.classList.add("active");
-          thumbnailBar.appendChild(thumb);
-        }
-
-      } else {
-        document.getElementById("error").innerText = "Incorrect password";
-      }
-    });
-  </script>
 </body>
 </html>
