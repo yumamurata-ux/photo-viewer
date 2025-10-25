@@ -34,7 +34,7 @@
     defaultZoomLevel:1,
     minZoomLevel:0.5,
     maxZoomLevel:20,
-    tileSources:"amati-nicolo-1673-01-01_tiles.dzi"
+    tileSources:"nicolo-amati-1673-01-01_tiles.dzi"
   });
 
   const thumbnailBar = document.getElementById("thumbnailBar");
@@ -48,7 +48,7 @@
     thumb.appendChild(img);
 
     thumb.addEventListener("click", function(){
-      viewer.open(`amati-nicolo-1673-01-${num}_tiles.dzi`);
+      viewer.open(`nicolo-amati-1673-01-${num}_tiles.dzi`);
       document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active"));
       thumb.classList.add("active");
     });
