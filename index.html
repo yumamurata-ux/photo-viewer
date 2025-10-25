@@ -2,153 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Instrument Archive</title>
+  <title>Giuseppe Guadagnini 1785</title>
   <style>
-    @font-face {
-      font-family: "Academy Engraved LET";
-      src: local("Academy Engraved LET"), local("AcademyEngravedLetPlain");
-    }
-
-    :root {
-      --bg: #ffffff;        
-      --card-bg: #f5f5f5;
-      --text: #3a2c23;
-      --accent: #d7b877;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: "Academy Engraved LET", serif;
-      background-color: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    header {
-      width: 100%;
-      text-align: center;
-      padding: 60px 20px 20px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-weight: normal;
-      font-size: 2.2rem;
-      color: var(--accent);
-      letter-spacing: 1px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      width: 90%;
-      max-width: 1200px;
-      margin: 40px auto;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--text);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .thumb {
-      width: 100%;           /* 文字幅に合わせる */
-      aspect-ratio: 3 / 4;   /* 縦横比を維持 */
-      object-fit: contain;    /* 上下左右を切らずに収める */
-      background-color: #ffffff;
-      padding: 2px;
-      transition: filter 0.3s ease;
-    }
-
-    .thumb:hover {
-      filter: brightness(1.05) contrast(1.1);
-    }
-
-    .card-content {
-      padding: 16px;
-      text-align: center;
-      width: 100%;  /* サムネ横幅に合わせる */
-    }
-
-    .card h2 {
-      margin: 8px 0 4px;
-      font-size: 1.3rem;
-      color: var(--accent);
-    }
-
-    .card p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--text);
-      opacity: 0.85;
-    }
-
-    footer {
-      margin: 60px 0 40px;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
-      .thumb {
-        aspect-ratio: 3 / 4;
-      }
-    }
+    @font-face { font-family: "Academy Engraved LET"; src: local("Academy Engraved LET"), local("AcademyEngravedLetPlain"); }
+    :root { --bg:#ffffff; --text:#3a2c23; --accent:#d7b877; }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:"Academy Engraved LET",serif;background-color:var(--bg);color:var(--text);display:flex;flex-direction:column;align-items:center;min-height:100vh;}
+    h1{margin:30px 0 10px;font-weight:400;}
+    #passwordPrompt{background:white;padding:24px 32px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-top:120px;text-align:center;}
+    input[type="password"]{padding:10px 16px;font-size:1rem;border:1px solid #ccc;border-radius:8px;outline:none;margin:10px 0;transition:border-color 0.2s;}
+    input[type="password"]:focus{border-color:#888;}
+    button{background-color:#333;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:1rem;transition:background-color 0.2s;}
+    button:hover{background-color:#555;}
+    #error{color:#d33;margin-top:10px;}
+    #viewer{width:90vw;height:75vh;background-color:#f5f5f5;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.1);display:none;overflow:hidden;}
+    #thumbnailBar{display:none;width:90vw;margin:16px 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;}
+    .thumb{width:100px;height:100px;border-radius:8px;overflow:hidden;cursor:pointer;opacity:0.8;transition:transform 0.2s, opacity 0.2s;}
+    .thumb:hover{transform:scale(1.05);opacity:1;}
+    .thumb.active{outline:3px solid #333;opacity:1;}
+    .thumb img{width:100%;height:100%;object-fit:cover;}
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
 </head>
 <body>
 
-  <header>
-    <h1>Instrument Archive</h1>
-  </header>
+  <h1>Giuseppe Guadagnini 1785</h1>
 
-  <div class="gallery">
-
-    <!-- GUADAGNINI -->
-    <a href="giuseppe-guadagnini-1785-01.html" class="card">
-      <img src="giuseppe-guadagnini-1785-01-thumb1.jpg" alt="Giuseppe Guadagnini 1785" class="thumb">
-      <div class="card-content">
-        <h2>Giuseppe Guadagnini</h2>
-        <p>Turin, 1785</p>
-      </div>
-    </a>
-
-    <!-- AMATI -->
-    <a href="nicolo-amati-1673-01.html" class="card">
-      <img src="nicolo-amati-1673-01-thumb1.jpg" alt="Nicolo Amati 1673" class="thumb">
-      <div class="card-content">
-        <h2>Nicolo Amati</h2>
-        <p>Cremona, 1673</p>
-      </div>
-    </a>
-
+  <div id="passwordPrompt">
+    <h2>Password required</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <br>
+    <button id="passwordButton">Submit</button>
+    <p id="error"></p>
   </div>
 
-  <footer>
-    © 2025 Instrument Archive
-  </footer>
+  <div id="viewer"></div>
+  <div id="thumbnailBar"></div>
+
+  <script>
+    const correctPassword = "yumamurata";
+    const passwordButton = document.getElementById("passwordButton");
+
+    passwordButton.addEventListener("click", function(){
+      const input = document.getElementById("passwordInput").value;
+      if(input === correctPassword){
+        document.getElementById("passwordPrompt").style.display="none";
+        document.getElementById("viewer").style.display="block";
+        document.getElementById("thumbnailBar").style.display="flex";
+
+        const viewer = OpenSeadragon({
+          id:"viewer",
+          prefixUrl:"https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/",
+          showNavigator:true,
+          navigatorPosition:"BOTTOM_RIGHT",
+          defaultZoomLevel:1,
+          minZoomLevel:0.5,
+          maxZoomLevel:20,
+          tileSources:"giuseppe-guadagnini-1785-vn-01_tiles.dzi"
+        });
+
+        const thumbnailBar = document.getElementById("thumbnailBar");
+        for(let i=1;i<=8;i++){
+          const num=("0"+i).slice(-2);
+          const thumb=document.createElement("div");
+          thumb.className="thumb";
+          const img=document.createElement("img");
+          img.src=`giuseppe-guadagnini-1785-01-thumb${i}.jpg`;
+          thumb.appendChild(img);
+          thumb.addEventListener("click", function(){
+            viewer.open("giuseppe-guadagnini-1785-vn-01_tiles.dzi");
+            document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active"));
+            thumb.classList.add("active");
+          });
+          if(i===1) thumb.classList.add("active");
+          thumbnailBar.appendChild(thumb);
+        }
+
+      } else {
+        document.getElementById("error").innerText="Incorrect password";
+      }
+    });
+  </script>
 
 </body>
 </html>
