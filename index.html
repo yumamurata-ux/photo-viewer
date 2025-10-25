@@ -106,7 +106,7 @@
     }
 
     .thumb {
-      flex: 0 0 auto; /* 横スクロールに必須 */
+      flex: 0 0 auto; 
       width: 110px;
       height: 110px;
       border-radius: 12px;
@@ -133,7 +133,6 @@
       object-fit: cover;
     }
 
-    /* スマホ向け調整 */
     @media (max-width: 600px) {
       #viewer {
         height: 50vh;
@@ -168,7 +167,14 @@
       if (input === correctPassword) {
         document.getElementById("passwordPrompt").style.display = "none";
         document.getElementById("viewer").style.display = "block";
-        document.getElementById("thumbnailBar").style.display = "flex";
+        const thumbnailBar = document.getElementById("thumbnailBar");
+        thumbnailBar.style.display = "flex";
+
+        // タイル情報を配列で管理
+        const tileSources = [];
+        for (let i = 1; i <= 8; i++) {
+          tileSources.push(`Giuseppe-Guadagnini-1785-Vn-${i}_tiles.dzi`);
+        }
 
         const viewer = OpenSeadragon({
           id: "viewer",
@@ -178,24 +184,31 @@
           defaultZoomLevel: 1,
           minZoomLevel: 0.5,
           maxZoomLevel: 20,
-          tileSources: "Giuseppe-Guadagnini-1785-Vn-1_tiles.dzi"
+          tileSources: tileSources[0] // 最初は1枚目
         });
 
-        const thumbnailBar = document.getElementById("thumbnailBar");
+        // サムネイル作成
         for (let i = 1; i <= 8; i++) {
           const thumb = document.createElement("div");
           thumb.className = "thumb";
           const img = document.createElement("img");
           img.src = `Giuseppe-Guadagnini-1785-Vn-${i}_tiles_files/0/0_0.jpg`;
           thumb.appendChild(img);
-          thumb.addEventListener("click", function() {
-            viewer.open(`Giuseppe-Guadagnini-1785-Vn-${i}_tiles.dzi`);
+
+          const openTile = function() {
+            viewer.open(tileSources[i-1]);
             document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
             thumb.classList.add("active");
-          });
+          };
+
+          // デスクトップ・タッチ両方に対応
+          thumb.addEventListener("click", openTile);
+          thumb.addEventListener("touchstart", openTile);
+
           if (i === 1) thumb.classList.add("active");
           thumbnailBar.appendChild(thumb);
         }
+
       } else {
         document.getElementById("error").innerText = "Incorrect password";
       }
