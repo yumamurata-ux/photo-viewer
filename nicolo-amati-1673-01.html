@@ -2,64 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nicolo Amati 1673</title>
+  <title>Instrument Archive - Nicolo Amati 1673</title>
   <style>
     @font-face { font-family: "Academy Engraved LET"; src: local("Academy Engraved LET"), local("AcademyEngravedLetPlain"); }
-    :root { --bg: #ffffff; --text: #3a2c23; --accent: #d7b877; --card-bg: #f5f5f5; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: "Academy Engraved LET", serif; background-color: var(--bg); color: var(--text); display:flex; flex-direction:column; align-items:center; min-height:100vh; }
-    header { width:100%; text-align:center; padding:40px 20px 20px; }
-    header h1 { font-weight:normal; font-size:2rem; color:var(--accent); margin-bottom:4px; }
-    header p { margin:0; font-size:1rem; }
-    #openseadragon { width:90%; max-width:900px; height:70vh; background-color:#f5f5f5; border:1px solid #ccc; border-radius:12px; }
-    .thumbnails { display:flex; justify-content:center; flex-wrap:wrap; margin:20px auto 40px; gap:12px; }
-    .thumbnails img { width:80px; height:100px; object-fit:contain; cursor:pointer; border:2px solid transparent; border-radius:6px; transition:all 0.3s ease; }
-    .thumbnails img.active, .thumbnails img:hover { border-color:var(--accent); transform:scale(1.05); }
-    footer { margin:40px 0; color:#666; font-size:0.9rem; }
-    @media(max-width:600px){ #openseadragon{width:95%; height:60vh;} .thumbnails img{width:60px; height:80px;} }
+    :root { --bg:#ffffff; --text:#3a2c23; --accent:#d7b877; }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:"Academy Engraved LET",serif;background-color:var(--bg);color:var(--text);display:flex;flex-direction:column;align-items:center;min-height:100vh;}
+    h1{margin:30px 0 10px;font-weight:400;}
+    #viewer{width:90vw;height:75vh;background-color:#f5f5f5;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.1);overflow:hidden;}
+    #thumbnailBar{width:90vw;margin:16px 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;}
+    .thumb{width:100px;height:100px;border-radius:8px;overflow:hidden;cursor:pointer;opacity:0.8;transition:transform 0.2s, opacity 0.2s;}
+    .thumb:hover{transform:scale(1.05);opacity:1;}
+    .thumb.active{outline:3px solid #333;opacity:1;}
+    .thumb img{width:100%;height:100%;object-fit:cover;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
 </head>
 <body>
 
-  <header>
-    <h1>Nicolo Amati</h1>
-    <p>Cremona, 1673</p>
-  </header>
+<h1>Nicolo Amati 1673</h1>
 
-  <div id="openseadragon"></div>
+<div id="viewer"></div>
+<div id="thumbnailBar"></div>
 
-  <div class="thumbnails">
-    <img src="nicolo-amati-1673-01-thumb1.jpg" data-dzi="nicolo-amati-1673-vn-01_tiles.dzi" class="active" alt="Front">
-    <img src="nicolo-amati-1673-01-thumb2.jpg" data-dzi="nicolo-amati-1673-vn-02_tiles.dzi" alt="Back">
-    <img src="nicolo-amati-1673-01-thumb3.jpg" data-dzi="nicolo-amati-1673-vn-03_tiles.dzi" alt="Side 1">
-    <img src="nicolo-amati-1673-01-thumb4.jpg" data-dzi="nicolo-amati-1673-vn-04_tiles.dzi" alt="Side 2">
-    <img src="nicolo-amati-1673-01-thumb5.jpg" data-dzi="nicolo-amati-1673-vn-05_tiles.dzi" alt="Scroll 1">
-    <img src="nicolo-amati-1673-01-thumb6.jpg" data-dzi="nicolo-amati-1673-vn-06_tiles.dzi" alt="Scroll 2">
-    <img src="nicolo-amati-1673-01-thumb7.jpg" data-dzi="nicolo-amati-1673-vn-07_tiles.dzi" alt="Detail 1">
-    <img src="nicolo-amati-1673-01-thumb8.jpg" data-dzi="nicolo-amati-1673-vn-08_tiles.dzi" alt="Detail 2">
-  </div>
+<script>
+  const viewer = OpenSeadragon({
+    id:"viewer",
+    prefixUrl:"https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/images/",
+    showNavigator:true,
+    navigatorPosition:"BOTTOM_RIGHT",
+    defaultZoomLevel:1,
+    minZoomLevel:0.5,
+    maxZoomLevel:20,
+    tileSources:"amati-nicolo-1673-01-01_tiles.dzi"
+  });
 
-  <footer>
-    <a href="index.html" style="color: var(--accent); text-decoration: none;">← Back to Gallery</a>
-  </footer>
+  const thumbnailBar = document.getElementById("thumbnailBar");
 
-  <script>
-    let viewer = OpenSeadragon({
-      id:"openseadragon",
-      prefixUrl:"https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
-      tileSources:"nicolo-amati-1673-vn-01_tiles.dzi"
+  for(let i=1;i<=8;i++){
+    const num=("0"+i).slice(-2);
+    const thumb=document.createElement("div");
+    thumb.className="thumb";
+    const img=document.createElement("img");
+    img.src=`nicolo-amati-1673-01-thumb${i}.jpg`;
+    thumb.appendChild(img);
+
+    thumb.addEventListener("click", function(){
+      viewer.open(`amati-nicolo-1673-01-${num}_tiles.dzi`);
+      document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active"));
+      thumb.classList.add("active");
     });
 
-    const thumbs = document.querySelectorAll(".thumbnails img");
-    thumbs.forEach(t=>{
-      t.addEventListener("click", ()=>{
-        thumbs.forEach(i=>i.classList.remove("active"));
-        t.classList.add("active");
-        viewer.open(t.dataset.dzi);
-      });
-    });
-  </script>
+    if(i===1) thumb.classList.add("active");
+    thumbnailBar.appendChild(thumb);
+  }
+</script>
 
 </body>
 </html>
