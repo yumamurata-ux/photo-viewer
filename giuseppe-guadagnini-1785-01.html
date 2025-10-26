@@ -10,7 +10,22 @@
     *{box-sizing:border-box;}
     body{margin:0;font-family:"Academy Engraved LET",serif;background-color:var(--bg);color:var(--text);display:flex;flex-direction:column;align-items:center;min-height:100vh;}
     h1{margin:30px 0 10px;font-weight:400;}
-    #viewer{width:90vw;height:75vh;background-color:#ffffff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.1);overflow:hidden;}
+    #backButton{
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      padding: 8px 16px;
+      background-color: var(--accent);
+      color: var(--text);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: "Academy Engraved LET", serif;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    #viewer{width:90vw;height:75vh;background-color:#ffffff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.1);overflow:hidden;margin-top:50px;}
     #thumbnailBar{width:90vw;margin:16px 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;}
     .thumb{width:100px;height:100px;border-radius:8px;overflow:hidden;cursor:pointer;opacity:0.8;transition:transform 0.2s, opacity 0.2s;}
     .thumb:hover{transform:scale(1.05);opacity:1;}
@@ -20,6 +35,8 @@
   <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
 </head>
 <body>
+
+<button id="backButton" onclick="window.location.href='index.html'">トップページに戻る</button>
 
 <h1>Giuseppe Guadagnini 1785</h1>
 
@@ -34,13 +51,12 @@
     navigatorPosition: "BOTTOM_RIGHT",
     visibilityRatio: 1.0,
     constrainDuringPan: true,
-    defaultZoomLevel: 0, // 初期ズームは無視されるが明示
+    defaultZoomLevel: 0,
     minZoomLevel: 0.1,
     maxZoomLevel: 20,
     tileSources: "guadagnini-giuseppe-1785-vn-01-01_tiles.dzi"
   });
 
-  // 画像全体を初期表示
   viewer.addHandler('open', function() {
     viewer.viewport.goHome(true);
   });
